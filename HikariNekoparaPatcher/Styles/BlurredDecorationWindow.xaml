@@ -1,0 +1,122 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:HikariNekoparaPatcher.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/HikariNekoparaPatcher;component/Styles/Colors.xaml" />
+        <ResourceDictionary Source="/HikariNekoparaPatcher;component/Styles/ImageButton.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="StyleImageButtonWindow"
+           BasedOn="{StaticResource StyleImageButtonWithOpacity}"
+           TargetType="{x:Type controls:ImageButton}">
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Margin" Value="4,0,0,0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="StyleBlurredDecorationWindow" 
+           TargetType="{x:Type controls:BlurredDecorationWindow}">
+        <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="ResizeMode" Value="NoResize" />
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="BorderThickness" Value="1,0,1,1" />
+        <Setter Property="DecorationHeight" Value="28" />
+        <Setter Property="BorderBrush" Value="{StaticResource BrushOverlayDark}" />
+        <Setter Property="MinWidth" Value="256" />
+        <Setter Property="MinHeight" Value="144" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome CaptionHeight="0" ResizeBorderThickness="5" />
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:BlurredDecorationWindow}">
+                    <Grid VerticalAlignment="Top" HorizontalAlignment="Right"
+                          MinWidth="1280" MinHeight="720"
+                          Background="{TemplateBinding Background}">
+                        <Grid Margin="-12,-12,-12,0">
+                            <Viewbox HorizontalAlignment="Right" Stretch="UniformToFill">
+                                <Image Source="{TemplateBinding BackgroundImage}" />
+                            </Viewbox>
+
+                            <Border Name="BlurImage">
+                                <Border.OpacityMask>
+                                    <VisualBrush TileMode="None" Stretch="None" AlignmentX="Center" AlignmentY="Center">
+                                        <VisualBrush.Visual>
+                                            <Grid Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}" 
+                                                  Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}}">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="12" />
+                                                    <RowDefinition Height="28" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Rectangle Fill="Black" Grid.Row="0" Grid.RowSpan="2" />
+                                                <Rectangle Fill="Transparent" Grid.Row="2" />
+                                            </Grid>
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Border.OpacityMask>
+
+                                <Border.Effect>
+                                    <BlurEffect Radius="30" />
+                                </Border.Effect>
+
+                                <Viewbox HorizontalAlignment="Right" Stretch="UniformToFill">
+                                    <Image Source="{TemplateBinding BackgroundImage}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Viewbox>
+                            </Border>
+                        </Grid>
+
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <DockPanel LastChildFill="True">
+                                <Border x:Name="PART_Decoration" 
+                                        DockPanel.Dock="Top"
+                                        HorizontalAlignment="Stretch"
+                                        Height="{TemplateBinding DecorationHeight}"
+                                        Background="{TemplateBinding BorderBrush}">
+                                    <DockPanel HorizontalAlignment="Stretch" Margin="4" LastChildFill="False">
+                                        <controls:ImageButton x:Name="PART_CloseButton"
+                                                              DockPanel.Dock="Right"
+                                                              Style="{StaticResource StyleImageButtonWindow}"
+                                                              Image="/HikariNekoparaPatcher;component/Resources/close.png" 
+                                                              ToolTip="Beenden" />
+
+                                        <controls:ImageButton x:Name="PART_MinimizeButton"
+                                                              DockPanel.Dock="Right"
+                                                              Style="{StaticResource StyleImageButtonWindow}"
+                                                              Image="/HikariNekoparaPatcher;component/Resources/minimize.png" 
+                                                              ToolTip="Minimieren" />
+                                        
+                                        <controls:ImageButton x:Name="PART_IconButton"
+                                                              DockPanel.Dock="Left" 
+                                                              VerticalAlignment="Center"
+                                                              Style="{StaticResource StyleImageButtonWithOpacity}"
+                                                              Image="{TemplateBinding Icon}"
+                                                              ToolTip="{TemplateBinding ToolTip}" />
+
+                                        <controls:BlurredText DockPanel.Dock="Left" 
+                                                              VerticalAlignment="Center"
+                                                              Margin="8,0"
+                                                              Text="{TemplateBinding Title}" />
+                                    </DockPanel>
+                                </Border>
+
+                                <ContentPresenter x:Name="PART_Content" />
+                            </DockPanel>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
+    

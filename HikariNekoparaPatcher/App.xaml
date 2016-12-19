@@ -1,0 +1,14 @@
+﻿<Application x:Class="HikariNekoparaPatcher.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/HikariNekoparaPatcher;component/Styles/BlurredDecorationWindow.xaml" />
+                <ResourceDictionary Source="/HikariNekoparaPatcher;component/Styles/ToolTip.xaml" />
+                <ResourceDictionary Source="/HikariNekoparaPatcher;component/Styles/ImageButton.xaml" />
+                <ResourceDictionary Source="/HikariNekoparaPatcher;component/Styles/BlurredText.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

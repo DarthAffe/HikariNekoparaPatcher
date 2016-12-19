@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/HikariNekoparaPatcher;component/Styles/Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="ToolTip">
+        <Style.Setters>
+            <Setter Property="Foreground" Value="{StaticResource BrushForeground}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToolTip">
+                        <Border BorderThickness="1" BorderBrush="{StaticResource BrushOverlayBright}" Background="{StaticResource BrushOverlayDark}">
+                            <ContentPresenter Margin="6,4" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+</ResourceDictionary>
+    
