@@ -76,7 +76,7 @@ namespace HikariNekoparaPatcher.Services
                     }
                 if (lastSuccessfullIndex > -1)
                 {
-                    string targetFile = Path.Combine(targetDirectory, path.Substring(0, lastSuccessfullIndex).Replace('.', '\\'), path.Substring(lastSuccessfullIndex + 1));
+                    string targetFile = Path.Combine(targetDirectory, path.Substring(0, lastSuccessfullIndex).Replace('.', '\\'), path.Substring(lastSuccessfullIndex + 1)).Replace("___percent___", "%");
                     File.WriteAllBytes(targetFile, GetType().Assembly.GetManifestResource($"HikariNekoparaPatcher.PatchData.{file}.{path}"));
                 }
             }
