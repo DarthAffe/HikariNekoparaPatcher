@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Microsoft.Win32;
 
@@ -17,6 +19,30 @@ namespace HikariNekoparaPatcher.Services
 
         public string GetPathIfDefault()
         {
+            string[] subFolders =
+            {
+                @"Steam\steamapps\common\NEKOPARA Vol. 1",
+                @"Steam\steamapps\common\NEKOPARA Vol1",
+                @"Steam\steamapps\common\NEKOPARA_Vol. 1",
+                @"Steam\steamapps\common\NEKOPARA_Vol1",
+                @"NEKO WORKs\nekopara vol. 1",
+                @"NEKO WORKs\nekopara vol1",
+                @"NEKO WORKs\nekopara_vol. 1",
+                @"NEKO WORKs\nekopara_vol1"
+            };
+
+            List<string> pathsToTry = new List<string>();
+            foreach (string subFolder in subFolders)
+            {
+                pathsToTry.Add(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), subFolder));
+                pathsToTry.Add(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), subFolder));
+                pathsToTry.Add(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), subFolder));
+            }
+
+            foreach (string pathToTry in pathsToTry)
+                if (CheckPath(pathToTry))
+                    return pathToTry;
+
             return null;
         }
 
