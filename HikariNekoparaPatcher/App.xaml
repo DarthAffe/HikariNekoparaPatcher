@@ -8,6 +8,7 @@
                 <ResourceDictionary Source="/HikariNekoparaPatcher;component/Styles/ToolTip.xaml" />
                 <ResourceDictionary Source="/HikariNekoparaPatcher;component/Styles/ImageButton.xaml" />
                 <ResourceDictionary Source="/HikariNekoparaPatcher;component/Styles/BlurredText.xaml" />
+                <ResourceDictionary Source="/HikariNekoparaPatcher;component/Styles/BusyIndicator.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

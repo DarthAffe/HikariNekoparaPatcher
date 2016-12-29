@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 using HikariNekoparaPatcher.Misc;
 using HikariNekoparaPatcher.Services;
@@ -29,6 +30,17 @@ namespace HikariNekoparaPatcher
         }
 
         public bool IsGamePathSelected => !string.IsNullOrWhiteSpace(GamePath) && Directory.Exists(GamePath);
+
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                _isBusy = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 
@@ -87,9 +99,11 @@ namespace HikariNekoparaPatcher
                 Process.Start(path);
         }
 
-        private void ApplyPatch()
+        private async void ApplyPatch()
         {
-            _patchService.ApplyPatch(GamePath);
+            IsBusy = true;
+            await Task.Run(() => _patchService.ApplyPatch(GamePath));
+            IsBusy = false;
         }
 
         #endregion

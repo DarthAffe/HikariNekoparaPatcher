@@ -14,42 +14,52 @@
                                   IconCommand="{Binding OpenHomepageCommand}"
                                   Title="Hikari 光 Translations - Nekopara Vol. 1 - Patch"
                                   BackgroundImage="/HikariNekoparaPatcher;component/Resources/background.png"
+                                  FontFamily="/HikariNekoparaPatcher;component/Resources/#RockoFLF"
                                   d:DataContext="{d:DesignInstance Type=hikariNekoparaPatcher:MainWindowViewModel, IsDesignTimeCreatable=False}">
 
     <controls:BlurredDecorationWindow.Resources>
         <converters:BoolToCollapsedVisibilityConverter x:Key="ConverterBoolToCollapsedVisibilityConverter" />
     </controls:BlurredDecorationWindow.Resources>
 
-    <DockPanel HorizontalAlignment="Right" Width="240" LastChildFill="False">
-        <controls:ImageButton DockPanel.Dock="Bottom" 
-                              Style="{StaticResource StyleImageButtonMenu}"
-                              Image="/HikariNekoparaPatcher;component/Resources/exit_normal.png"
-                              HoverImage="/HikariNekoparaPatcher;component/Resources/exit_hover.png"
-                              PressedImage="/HikariNekoparaPatcher;component/Resources/exit_pressed.png"
-                              Command="{Binding ExitCommand}" />
+    <Grid>
+        <DockPanel HorizontalAlignment="Right" Width="240" LastChildFill="False">
+            <controls:ImageButton DockPanel.Dock="Bottom" 
+                                  Style="{StaticResource StyleImageButtonMenu}"
+                                  Image="/HikariNekoparaPatcher;component/Resources/exit_normal.png"
+                                  HoverImage="/HikariNekoparaPatcher;component/Resources/exit_hover.png"
+                                  PressedImage="/HikariNekoparaPatcher;component/Resources/exit_pressed.png"
+                                  Command="{Binding ExitCommand}" />
 
-        <controls:ImageButton DockPanel.Dock="Top" 
-                              Style="{StaticResource StyleImageButtonMenu}"
-                              Image="/HikariNekoparaPatcher;component/Resources/browse_normal.png"
-                              HoverImage="/HikariNekoparaPatcher;component/Resources/browse_hover.png"
-                              PressedImage="/HikariNekoparaPatcher;component/Resources/browse_pressed.png"
-                              Visibility="{Binding IsGamePathSelected, Converter={StaticResource ConverterBoolToCollapsedVisibilityConverter}, ConverterParameter=True}"
-                              Command="{Binding BrowseGamePathCommand}" />
+            <controls:ImageButton DockPanel.Dock="Top" 
+                                  Style="{StaticResource StyleImageButtonMenu}"
+                                  Image="/HikariNekoparaPatcher;component/Resources/browse_normal.png"
+                                  HoverImage="/HikariNekoparaPatcher;component/Resources/browse_hover.png"
+                                  PressedImage="/HikariNekoparaPatcher;component/Resources/browse_pressed.png"
+                                  Visibility="{Binding IsGamePathSelected, Converter={StaticResource ConverterBoolToCollapsedVisibilityConverter}, ConverterParameter=True}"
+                                  Command="{Binding BrowseGamePathCommand}" />
 
-        <controls:ImageButton DockPanel.Dock="Top" 
-                              Style="{StaticResource StyleImageButtonMenu}"
-                              Image="/HikariNekoparaPatcher;component/Resources/start_normal.png"
-                              HoverImage="/HikariNekoparaPatcher;component/Resources/start_hover.png"
-                              PressedImage="/HikariNekoparaPatcher;component/Resources/start_pressed.png"
-                              Visibility="{Binding IsGamePathSelected, Converter={StaticResource ConverterBoolToCollapsedVisibilityConverter}}"
-                              Command="{Binding StartGameCommand}" />
+            <controls:ImageButton DockPanel.Dock="Top" 
+                                  Style="{StaticResource StyleImageButtonMenu}"
+                                  Image="/HikariNekoparaPatcher;component/Resources/start_normal.png"
+                                  HoverImage="/HikariNekoparaPatcher;component/Resources/start_hover.png"
+                                  PressedImage="/HikariNekoparaPatcher;component/Resources/start_pressed.png"
+                                  Visibility="{Binding IsGamePathSelected, Converter={StaticResource ConverterBoolToCollapsedVisibilityConverter}}"
+                                  Command="{Binding StartGameCommand}" />
 
-        <controls:ImageButton DockPanel.Dock="Top" 
-                              Style="{StaticResource StyleImageButtonMenu}"
-                              Image="/HikariNekoparaPatcher;component/Resources/patch_normal.png"
-                              HoverImage="/HikariNekoparaPatcher;component/Resources/patch_hover.png"
-                              PressedImage="/HikariNekoparaPatcher;component/Resources/patch_pressed.png"
-                              Visibility="{Binding IsGamePathSelected, Converter={StaticResource ConverterBoolToCollapsedVisibilityConverter}}"
-                              Command="{Binding ApplyPatchCommand}" />
-    </DockPanel>
+            <controls:ImageButton DockPanel.Dock="Top" 
+                                  Style="{StaticResource StyleImageButtonMenu}"
+                                  Image="/HikariNekoparaPatcher;component/Resources/patch_normal.png"
+                                  HoverImage="/HikariNekoparaPatcher;component/Resources/patch_hover.png"
+                                  PressedImage="/HikariNekoparaPatcher;component/Resources/patch_pressed.png"
+                                  Visibility="{Binding IsGamePathSelected, Converter={StaticResource ConverterBoolToCollapsedVisibilityConverter}}"
+                                  Command="{Binding ApplyPatchCommand}" />
+        </DockPanel>
+        
+        <controls:BusyIndicator Background="{StaticResource BrushOverlayDark}"
+                                IsBusy="{Binding IsBusy}"
+                                Image="/HikariNekoparaPatcher;component/Resources/busy.png"
+                                FontFamily="/HikariNekoparaPatcher;component/Resources/#RockoFLF"
+                                Foreground="#CC6644"
+                                Text="Patche ..."/>
+    </Grid>
 </controls:BlurredDecorationWindow>
